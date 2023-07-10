@@ -10,4 +10,4 @@
 
 ## Description
 
-Syncs inventory with actions.
+Pick your source of truth then sync and alert on inventory changes.
