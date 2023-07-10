@@ -1,3 +1,26 @@
 {{define "content"}}
 <h1>MSP Inventory</h1>
+<div class="alerts">
+  <h2>Alerts</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>Type</td>
+        <td>Link</td>
+      <tr>
+    </thead>
+    <tbody>
+      {{range $key, $data := .}}
+      <tr>
+        <td>{{$data.ID}}</td>
+        <td>{{$data.Subject}}</td>
+        <td>
+          <a href="/alert.html?id={{$data.ID}}">View</a>
+        </td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
 {{end}}
