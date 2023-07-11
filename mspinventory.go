@@ -58,7 +58,8 @@ func main() {
     panic("PORT env var missing")
   }
 
-  alerts = make(map[int]Alert)
+  alerts = make(map[int]alert)
+  providers = make(map[int]provider)
   //test data
   testAlerts()
 
