@@ -7,13 +7,13 @@ const (
 )
 
 type provider struct {
-  ID int
-  Type int
-  Key string
+  id int
+  ptype int
+  key string
 }
 
 var providers map[int]provider
 
 func addProvider(t int, key string) {
-
+  
 }

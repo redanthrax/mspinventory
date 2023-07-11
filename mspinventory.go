@@ -10,36 +10,44 @@ import (
 	"strings"
 )
 
-type Item struct {
-  ID string
-  Name string
-}
-
-var items []Item
 
 func webHandler(w http.ResponseWriter, r *http.Request) {
   log.Printf("%s request\n", r.URL.Path)
   t, err := template.ParseFiles("web/templ/base.html", "web/templ/header.html", "web/templ/footer.html")
-  if r.URL.Path == "/" {
-    _, err = t.ParseFiles("web/index.html")
-  }
 
   var d interface{}
-  if strings.Contains(r.URL.Path, ".html") {
-    switch r.URL.Path {
-      case "/", "/index.html":
-        d = alerts
-      case "/inventory.html":
-        d = items
-      case "/alert.html":
-        query := r.URL.Query().Get("id")
-        id, err := strconv.Atoi(query)
-        if err != nil {
-          log.Printf("Could not find id %s", query)
+  switch r.URL.Path {
+    case "/", "/index.html":
+      _, err = t.ParseFiles("web/index.html")
+      d = alerts
+    case "/inventory.html":
+      d = items
+    case "/alert.html":
+      query := r.URL.Query().Get("id")
+      id, err := strconv.Atoi(query)
+      if err != nil {
+        log.Printf("Could not find id %s", query)
+      }
+
+      d = alerts[id]
+    case "/providers.html":
+      d = providers
+    case "/addprovider":
+      if r.Method == http.MethodPost {
+        t, _ := strconv.Atoi(r.FormValue("type"))
+        p := provider {
+          id: len(providers) + 1,
+          ptype: t,
+          key: r.FormValue("apikey"),
         }
 
-        d = alerts[id]
-    }
+        providers[p.id] = p
+      }
+
+      http.Redirect(w, r, "/providers.html", http.StatusSeeOther)
+  }
+
+  if strings.Contains(r.URL.Path, ".html") {
     _, err = t.ParseFiles(fmt.Sprintf("web%s", r.URL.Path))
   }
 

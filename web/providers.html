@@ -1,3 +1,9 @@
 {{define "content"}}
-<h1>Providers</h1>
+  <h1>Providers</h1>
+  {{range $inx, $data := .}}
+    {{$data}}
+    <p>id: {{$data.id}}</p>
+    <p>type: {{$data.ptype}}</p>
+    <p>key: {{$data.key}}</p>
+  {{end}}
 {{end}}
