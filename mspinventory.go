@@ -30,19 +30,6 @@ func webHandler(w http.ResponseWriter, r *http.Request) {
       }
 
       d = alerts[id]
-    case "/providers.html":
-      d = providers
-    case "/addprovider":
-      if r.Method == http.MethodPost {
-        t, _ := strconv.Atoi(r.FormValue("type"))
-        p := provider {
-          id: len(providers) + 1,
-          ptype: t,
-          key: r.FormValue("apikey"),
-        }
-
-        providers[p.id] = p
-      }
 
       http.Redirect(w, r, "/providers.html", http.StatusSeeOther)
   }
@@ -61,15 +48,19 @@ func webHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+  mode := "PROD"
+  if os.Getenv("MODE") != "" {
+    mode = os.Getenv("MODE")
+  }
+
   port := os.Getenv("PORT")
   if port == "" {
     panic("PORT env var missing")
   }
 
-  alerts = make(map[int]alert)
-  providers = make(map[int]provider)
-  //test data
-  testAlerts()
+  if mode == "DEBUG" {
+    testAlerts()
+  }
 
   http.FileServer(http.Dir("web"))
   server := fmt.Sprintf("127.0.0.1:%s", port)

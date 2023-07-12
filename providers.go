@@ -8,12 +8,7 @@ const (
 
 type provider struct {
   id int
-  ptype int
-  key string
+  logo string
+  parameters interface{}
 }
 
-var providers map[int]provider
-
-func addProvider(t int, key string) {
-  
-}

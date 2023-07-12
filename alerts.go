@@ -1,7 +1,5 @@
 package main
 
-import "log"
-
 type alert struct {
   ID int
   Subject string
@@ -10,16 +8,10 @@ type alert struct {
 
 var alerts map[int]alert
 
-func testAlerts() {
-  for i := 1; i < 11; i++ {
-    err := addAlert("Test Subject", "Test Message of some longer stuff and things")
-    if err != nil {
-      log.Println(err)
-    }
-  }
-}
-
 func addAlert(sub string, mes string) error {
+  if alerts == nil {
+    alerts = make(map[int]alert)
+  }
   //will do database stuff
   id := len(alerts) + 1
   a := alert {
