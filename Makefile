@@ -1,5 +1,8 @@
 build:
-	go build .
+	@go build -o bin/app ./cmd/app/
 
-run:
-	go build . && export PORT=3000 && export MODE=DEBUG && ./mspinventory
+run: build
+	@./bin/app
+
+clean:
+	@rm -rf bin
