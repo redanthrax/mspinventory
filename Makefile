@@ -6,3 +6,6 @@ run: build
 
 clean:
 	@rm -rf bin
+
+tailwind:
+	npx tailwindcss -i tailwind.css -o public/assets/app.css
