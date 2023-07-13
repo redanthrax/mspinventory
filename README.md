@@ -20,3 +20,7 @@ Go
 HTMX
 TailwindCSS
 PostgreSQL (sqlite for debug)
+
+```
+docker run --name mspinventory -e POSTGRES_USER=mspinventory -e POSTGRES_PASSWORD=mspinventory -d postgres
+```
