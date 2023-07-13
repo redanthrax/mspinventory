@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <title>MSP Inventory</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ css }}
+    {{css}}
     <script type="text/javascript" src="/public/htmx.min.js"></script>
   </head>
-  <body>
-    {{embed}}
+  <body class="bg-gray-50 dark:bg-gray-800">
+    <div class="flex pt-1 overflow-hidden bg-gray-50 dark:bg-gray-900">
+      {{template "partials/sidebar" .}}
+      <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
+        <main>
+          {{embed}}
+        </main>
+      </div>
+    </div>
   </body>
 </html>

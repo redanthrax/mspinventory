@@ -4,7 +4,11 @@ module.exports = {
     './views/**/*.{html,js}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'bg-primary': '#3490dc', 
+      },
+    },
   },
   plugins: [],
 }

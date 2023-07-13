@@ -37,5 +37,7 @@ func initRoutes(app *fiber.App) {
   app.Static("/public", "./public")
   app.Static("/favicon.ico", "./public/favicon.ico")
   app.Get("/", handlers.HandleHome)
+  app.Get("/clients", handlers.HandleClients)
+  app.Get("/clients/add", handlers.HandleClientsAdd)
   app.Use(handlers.NotFoundMiddleware)
 }

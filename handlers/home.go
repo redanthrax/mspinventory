@@ -5,5 +5,5 @@ import (
 )
 
 func HandleHome(c *fiber.Ctx) error {
-  return c.Render("home/index", fiber.Map{}, "layouts/main")
+  return c.Render("dashboard/index", fiber.Map{}, "layouts/main")
 }
