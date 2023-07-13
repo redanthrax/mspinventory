@@ -8,13 +8,12 @@
     <script type="text/javascript" src="/public/htmx.min.js"></script>
   </head>
   <body class="bg-gray-50 dark:bg-gray-800">
-    <div class="flex pt-1 overflow-hidden bg-gray-50 dark:bg-gray-900">
+    <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
       {{template "partials/sidebar" .}}
       <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900">
-        <main>
-          {{embed}}
-        </main>
-      </div>
+      <main>
+        {{embed}}
+      </main>
     </div>
   </body>
 </html>
